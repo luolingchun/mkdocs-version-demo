@@ -14,7 +14,6 @@ theme:
 
 plugins:
   - search
-  - mkdocstrings
 
 extra:
   version:

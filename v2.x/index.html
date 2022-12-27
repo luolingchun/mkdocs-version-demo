@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mkdocs-version" class="md-skip">
+        <a href="#first-commit" class="md-skip">
           Skip to content
         </a>
       
@@ -191,12 +191,53 @@
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
       
-        
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="." class="md-nav__link md-nav__link--active">
         Home
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#first-commit" class="md-nav__link">
+    First commit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-to-github" class="md-nav__link">
+    Push to github
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-action" class="md-nav__link">
+    Github action
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -234,8 +275,35 @@
   
   
   
-    
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#first-commit" class="md-nav__link">
+    First commit
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#push-to-github" class="md-nav__link">
+    Push to github
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-action" class="md-nav__link">
+    Github action
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -250,16 +318,92 @@
                   
 
 
-<h1 id="mkdocs-version">mkdocs version</h1>
-<pre><code class="language-yaml">site_name: mkdocs version
-theme:
-  name: material
-plugins:
-  - search
+  <h1>Home</h1>
 
-extra:
-  version:
-    provider: mike
+<blockquote>
+<p>An example of versioning with <a href="https://github.com/jimporter/mike">mike</a> for MkDocs</p>
+</blockquote>
+<h2 id="first-commit">First commit</h2>
+<ol>
+<li>
+<p>create mkdocs.yml</p>
+<p>```yaml
+site_name: mike version for mkdocs</p>
+<p>theme:
+name: material</p>
+<p>plugins:
+- search</p>
+<p>extra:
+version:
+    provider: mike</p>
+<p>nav:
+- Home: index.md
+- Content: content.md
+```</p>
+</li>
+<li>
+<p>git commit all changes</p>
+</li>
+<li>
+<p>git checkout new branch v1.x</p>
+</li>
+<li>
+<p>create first version: <code>mike deploy v1.x</code></p>
+</li>
+<li>
+<p>back to master and <code>mike deploy v2.x</code>, now you get two versions.</p>
+</li>
+<li>
+<p>set default version: <code>mike set-default v2.x</code></p>
+</li>
+<li>
+<p>preview: <code>mike serve</code></p>
+</li>
+</ol>
+<h2 id="push-to-github">Push to github</h2>
+<ul>
+<li><code>git push origin master</code></li>
+<li><code>git push origin gh-pages</code></li>
+<li><code>git push origin v1.x</code></li>
+</ul>
+<h2 id="github-action">Github action</h2>
+<p>Create <code>.github/workflows/mkdocs.yml</code>, ensure correct branch and version, <code>v1.x</code> be equal to branch <a href="https://github.com/luolingchun/mkdocs-version-demo/blob/v1.x/.github/workflows/mkdocs.yml">v1.x</a> and <code>v2.x</code> be equal to branch <a href="https://github.com/luolingchun/mkdocs-version-demo/blob/master/.github/workflows/mkdocs.yml">master</a> in this demo.</p>
+<pre><code class="language-yml"># This is a basic workflow to help you get started with Actions
+
+name: mkdocs
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called &quot;build&quot;
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: pip install mkdocs-material mike mkdocstrings[python]
+      - name: Build docs
+        run: |
+          git config --local user.email &quot;action@github.com&quot;
+          git config --local user.name &quot;GitHub Action&quot;
+          git fetch origin gh-pages:gh-pages
+          mike deploy v2.x
+          git push origin gh-pages
+
 </code></pre>
 
 

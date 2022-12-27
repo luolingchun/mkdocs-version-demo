@@ -41,3 +41,45 @@
 - `git push origin gh-pages`
 - `git push origin v1.x`
 
+## Github action
+
+Create `.github/workflows/mkdocs.yml`, ensure correct branch and version, `v1.x` be equal to branch [v1.x](https://github.com/luolingchun/mkdocs-version-demo/blob/v1.x/.github/workflows/mkdocs.yml) and `v2.x` be equal to branch [master](https://github.com/luolingchun/mkdocs-version-demo/blob/master/.github/workflows/mkdocs.yml) in this demo.
+
+```yml
+# This is a basic workflow to help you get started with Actions
+
+name: mkdocs
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: pip install mkdocs-material mike mkdocstrings[python]
+      - name: Build docs
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git fetch origin gh-pages:gh-pages
+          mike deploy v2.x
+          git push origin gh-pages
+
+```

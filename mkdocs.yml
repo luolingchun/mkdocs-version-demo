@@ -1,5 +1,8 @@
 site_name: mkdocs version
 
+markdown_extensions:
+  - pymdownx.snippets
+
 theme:
   name: material
 

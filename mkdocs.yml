@@ -1,13 +1,20 @@
 site_name: mkdocs version
 
 markdown_extensions:
+  - admonition
+  - toc:
+      permalink: ⚓︎
+  - pymdownx.superfences
   - pymdownx.snippets
+  - pymdownx.highlight:
+      linenums: true
 
 theme:
   name: material
 
 plugins:
   - search
+  - mkdocstrings
 
 extra:
   version:

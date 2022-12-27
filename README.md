@@ -4,23 +4,24 @@
 
 1. create mkdocs.yml
 
-    ```yaml
+    ```yml
     site_name: mike version for mkdocs
 
     theme:
-    name: material
+      name: material
 
     plugins:
-    - search
+      - search
 
     extra:
-    version:
-        provider: mike
+      version:
+          provider: mike
     
     nav:
-    - Home: index.md
-    - Content: content.md
+      - Home: index.md
+      - Content: content.md
     ```
+
 
 2. git commit all changes
 

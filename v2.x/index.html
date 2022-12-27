@@ -323,23 +323,40 @@
 <blockquote>
 <p>An example of versioning with <a href="https://github.com/jimporter/mike">mike</a> for MkDocs</p>
 </blockquote>
-<h2 id="first-commit">First commit</h2>
+<h2 id="first-commit">First commit<a class="headerlink" href="#first-commit" title="Permanent link">⚓︎</a></h2>
 <ol>
 <li>
 <p>create mkdocs.yml</p>
-<p>```yaml
-site_name: mike version for mkdocs</p>
-<p>theme:
-name: material</p>
-<p>plugins:
-- search</p>
-<p>extra:
-version:
-    provider: mike</p>
-<p>nav:
-- Home: index.md
-- Content: content.md
-```</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code>site_name: mike version for mkdocs
+
+theme:
+  name: material
+
+plugins:
+  - search
+
+extra:
+  version:
+      provider: mike
+
+nav:
+  - Home: index.md
+  - Content: content.md
+</code></pre></div></td></tr></table></div>
 </li>
 <li>
 <p>git commit all changes</p>
@@ -360,15 +377,49 @@ version:
 <p>preview: <code>mike serve</code></p>
 </li>
 </ol>
-<h2 id="push-to-github">Push to github</h2>
+<h2 id="push-to-github">Push to github<a class="headerlink" href="#push-to-github" title="Permanent link">⚓︎</a></h2>
 <ul>
 <li><code>git push origin master</code></li>
 <li><code>git push origin gh-pages</code></li>
 <li><code>git push origin v1.x</code></li>
 </ul>
-<h2 id="github-action">Github action</h2>
+<h2 id="github-action">Github action<a class="headerlink" href="#github-action" title="Permanent link">⚓︎</a></h2>
 <p>Create <code>.github/workflows/mkdocs.yml</code>, ensure correct branch and version, <code>v1.x</code> be equal to branch <a href="https://github.com/luolingchun/mkdocs-version-demo/blob/v1.x/.github/workflows/mkdocs.yml">v1.x</a> and <code>v2.x</code> be equal to branch <a href="https://github.com/luolingchun/mkdocs-version-demo/blob/master/.github/workflows/mkdocs.yml">master</a> in this demo.</p>
-<pre><code class="language-yml"># This is a basic workflow to help you get started with Actions
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span></pre></div></td><td class="code"><div><pre><span></span><code># This is a basic workflow to help you get started with Actions
 
 name: mkdocs
 
@@ -403,8 +454,7 @@ jobs:
           git fetch origin gh-pages:gh-pages
           mike deploy v2.x
           git push origin gh-pages
-
-</code></pre>
+</code></pre></div></td></tr></table></div>
 
 
 
